@@ -1,0 +1,66 @@
+{% block ueditor_widget %}
+    <script  {{ block('widget_attributes') }} type="text/plain">
+        {%- if value is defined and value is not empty   %}{{- value|raw -}}{% endif -%}
+    </script>
+
+    <!-- 配置文件 -->
+
+    <script type="text/javascript">
+        window.UEDITOR_CONFIG || document.write("<script src='{{ asset('bundles/prozhoumatheditor/ueditor/ueditor.config.js') }}'>"+"</"+"script>");
+        window.UE || document.write("<script src='{{ asset('bundles/prozhoumatheditor/ueditor/ueditor.all.js') }}'>"+"</"+"script>" +
+            "<script src='{{ asset('bundles/prozhoumatheditor/ueditor/lang/zh-cn/zh-cn.js') }}'>"+"</"+"script>" );
+    </script>
+
+    <!-- 公式编辑器源码文件 -->
+    <script type="text/javascript" charset="utf-8" src="{{ asset('bundles/prozhoumatheditor/ueditor/kityformula-plugin/addKityFormulaDialog.js') }}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ asset('bundles/prozhoumatheditor/ueditor/kityformula-plugin/getKfContent.js') }}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ asset('bundles/prozhoumatheditor/ueditor/kityformula-plugin/defaultFilterFix.js') }}"></script>
+
+
+
+
+    {#    <script type="text/javascript" src="{{ asset('bundles/jimseditorhub/ueditor/ueditor.config.js') }}"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="{{ asset('bundles/jimseditorhub/ueditor/ueditor.all.js') }} "></script>
+        <script type="text/javascript" charset="utf-8" src="{{ asset('bundles/jimseditorhub/ueditor/lang/zh-cn/zh-cn.js') }}"></script>#}
+
+
+    {% if js_script is defined and js_script is not empty %}
+        <!-- 自定义js -->
+        <script type="text/javascript">
+            {{ js_script|raw }}
+        </script>
+    {% endif %}
+
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        {% if app.environment=='dev' %}
+        window.UEDITOR_CONFIG.serverUrl = window.UEDITOR_CONFIG.serverDevUrl;
+        {% endif %}
+        window.UEDITOR_CONFIG.wordCount = true;
+        window.UEDITOR_CONFIG.maximumWords = 20000;
+        var ue{{ id }} = UE.getEditor('{{ id }}');
+    </script>
+
+
+    <script>
+        var form = document.forms[0];
+        if(!arr){
+            var arr = new Array(0);
+        }
+        arr.push("kfSubmit{{ id }}");
+        form.onsubmit = function(){
+            for(var i=0;i<arr.length;i++){
+                window[arr[i]]();
+            }
+            form.submit();
+            return false;
+        };
+        var kfSubmit{{ id }} = function(){
+            ue{{ id }}.getKfContent(function(content){
+                //do nothings
+                ;
+            })
+        }
+    </script>
+{% endblock ueditor_widget %}

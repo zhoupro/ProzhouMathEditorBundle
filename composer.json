@@ -1,0 +1,28 @@
+{
+  "name": "prozhou/math-editor-bundle",
+  "type": "symfony-bundle",
+  "description": "ueditor and matheditor for Symfony 2/3.",
+  "keywords": [ "ueditor", "editor", "math editor" ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Prozhou",
+      "email": "zhoushengzheng@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^5.3.3|^7.0",
+    "symfony/framework-bundle": "^2.3|^3.0",
+    "symfony/form": "^2.3|^3.0",
+    "twig/twig": "^1.0||^2.0",
+    "jims/editor-hub-bundle":"^1.0"
+  },
+  "require-dev": {
+    "symfony/twig-bundle": "^2.3|^3.0",
+    "symfony/yaml": "^2.3|^3.0"
+  },
+  "autoload": {
+    "psr-4": { "Prozhou\\MathEditorBundle\\": "" }
+  }
+
+}
