@@ -3,6 +3,7 @@
 ## 安装 
   1.Step 1 composer 安装
   ```
+  composer require jims/editor-hub-bundle
   composer require prozhou/math-editor-bundle
   
   ```
@@ -17,6 +18,7 @@
   {
       $bundles = array(
           // ...
+          new Jims\EditorHubBundle\JimsEditorHubBundle(),
           new Prozhou\MathEditorBundle\ProzhouMathEditorBundle(),
       );
   }
@@ -54,50 +56,6 @@
         allow_files:  [ ".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp" ]     #允许的文件格式
   ```
 ## 使用方法
-### symony3:
-  ```php
-    use Jims\EditorHubBundle\Form\UeditorType;
-    use Jims\EditorHubBundle\Form\UmeditorType;
-    ...
-    ...
-      #使用ueditor
-      ->add('content', UeditorType::class, array(
-            "attr" => array(
-                "style" => "height:400px;width:600px;", //editor转换成编辑器编辑空间尺寸
-                "class"=>"jims",
-            ),
-            //通过自定义js, 控制editor toolbars
-            'js_script' => "window.UEDITOR_CONFIG.toolbars=[['fullscreen', 'source', 'undo', 'redo', 'bold']]",
-        ))
-        #使用umeditor
-        //->add('content', UmeditorType::class, array(
-        //    "attr" => array(
-        //        "style" => "width:555px;",
-        //        "class"=>"jims",
-        //    ),
-        //))
-  ```
-### symfony2:
-  ```php
-      #使用ueditor
-      ->add('content', "ueditor", array(
-            "attr" => array(
-                "style" => "height:400px;width:600px;", //editor转换成编辑器编辑空间尺寸
-                "class"=>"jims",
-            ),
-            //通过自定义js, 控制editor toolbars
-            'js_script' => "window.UEDITOR_CONFIG.toolbars=[['fullscreen', 'source', 'undo', 'redo', 'bold']]",
-        ))
-        #使用umeditor
-        //->add('content', "umeditor", array(
-        //    "attr" => array(
-        //        "style" => "width:555px;",
-        //        "class"=>"jims",
-        //    ),
-        //))
-  ```
-  
- ### 公式编辑器:
  
  ```php
 <?php
